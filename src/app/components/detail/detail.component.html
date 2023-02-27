@@ -1,0 +1,75 @@
+<div *ngIf="project" class="example-list">
+  <div class="container">
+    <h3>
+      <strong>{{ project.group | uppercase }} Details</strong>
+    </h3>
+    <div class="project-group">
+      <label for="project-group"><strong>Details: </strong></label>
+      <input
+        class="input-radius"
+        id="project-group"
+        [(ngModel)]="project.group"
+        placeholder="Project group"
+      />
+    </div>
+    <div class="project-name">
+      <label for="project-name"><strong>Project name: </strong></label>
+      <input
+        class="input-radius"
+        id="project-name"
+        [(ngModel)]="project.name"
+        placeholder="Project name"
+      />
+    </div>
+    <div class="project-desc">
+      <label for="project-desc"><strong>Project description: </strong></label>
+      <input
+        class="input-radius"
+        id="project-desc"
+        [(ngModel)]="project.desc"
+        placeholder="Project description"
+      />
+    </div>
+    <div
+      class="project-tasks"
+      cdkDropList
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <label for="projectTasks"><strong>Tasks to do: </strong></label>
+      <ol>
+        <li
+          class="example-box"
+          *ngFor="let task of project.tasks; index as i"
+          cdkDrag
+        >
+          {{ task }}
+          <div class="btn-container">
+            <button mat-icon-button class="right">
+              <mat-icon (click)="editTask(i)">edit</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon (click)="deleteTask(i)">delete</mat-icon>
+            </button>
+          </div>
+        </li>
+      </ol>
+      <input
+        
+        class="input-radius"
+        id="project-tasks"
+        [(ngModel)]="newTasks"
+        placeholder="Add tasks to do"
+        (keydown.enter)="addTask()"
+      />
+    </div>
+
+    <button class="btn btn-radius" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button class="btn btn-radius"><mat-icon>edit</mat-icon></button>
+    <button class="btn btn-radius" (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</div>

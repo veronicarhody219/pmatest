@@ -1,0 +1,95 @@
+<!-- <div
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+  class="container"
+  cdkDropListGroup
+>
+  <div class="card" cdkDrag *ngFor="let project of projects">
+    <mat-card
+      cdkDropList
+      [cdkDropListData]="project._id"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ project.name }}</mat-card-title>
+        <mat-card-subtitle>{{ project.group }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ project.desc }}</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button><mat-icon>add</mat-icon></button>
+        <button mat-button><mat-icon>edit</mat-icon></button>
+        <button mat-button><mat-icon>delete</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div> -->
+<div cdkDropList (cdkDropListDropped)="dropInside($event)">
+  <div class="container" cdkDropListGroup>
+    <div *ngFor="let project of projects" cdkDrag>
+      <mat-card
+        cdkDropList
+        [cdkDropListData]="project.tasks"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <mat-card-header>
+          <mat-card-title>
+            <h2 class="project-name">{{ project.name }}</h2>
+
+            <div class="btn-container">
+              <button mat-icon-button>
+                <a routerLink="detail/{{ project._id }}"
+                  ><mat-icon>edit</mat-icon></a
+                >
+              </button>
+              <button mat-icon-button (click)="deleteProject(project._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <input
+              class="input-group"
+              type="text"
+              value="{{ project.group }}"
+            />
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ project.desc }}</p>
+
+          <h3 class="new-task">Tasks to do:</h3>
+          <div class="example-box" *ngFor="let task of project.tasks" cdkDrag>
+            {{ task }}
+            <div class="btn-container">
+              <button mat-icon-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+          <button mat-button>
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-button (click)="save(project._id)">
+            <mat-icon>save</mat-icon>
+          </button>
+        </mat-card-actions> -->
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!-- cdkDropList (cdkDropListDropped)="dropInside($event)"  -->

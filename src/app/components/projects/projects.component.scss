@@ -1,0 +1,44 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  margin-bottom: 1.8em;
+}
+.mat-card {
+  color: var(--text);
+  box-shadow: var(--box-shadow-content);
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.mat-icon{
+ font-size: 1rem;
+}
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+.input-group {
+  border: none;
+  background-color: inherit;
+  color: var(--box-shadow-content);
+  padding: 0;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}

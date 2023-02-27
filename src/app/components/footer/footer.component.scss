@@ -1,0 +1,26 @@
+.mat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+.logo {
+  max-width: 6rem;
+  padding: 1em;
+}
+
+.footer-text {
+  text-decoration: none;
+  text-transform: none;
+  cursor: pointer;
+  padding-left: 0.5em;
+}
+@media screen and (max-width: 600px) {
+  .footer-text {
+    font-size: 1rem;
+  }
+  .logo {
+  max-width: 4rem;
+  padding: 0.3em;
+}
+}

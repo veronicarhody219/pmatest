@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="title">
+    <h3>Add a new project</h3>
+  </div>
+  <form class="form-container" (ngSubmit)="submitForm()" #myForm="ngForm">
+    <input
+      id="group"
+      type="text"
+      placeholder="Enter your group's name"
+      required
+      [(ngModel)]="group"
+      name="group"
+    />
+    <input
+      id="name"
+      type="text"
+      placeholder="Enter your project's name"
+      required
+      [(ngModel)]="name"
+      name="name"
+    />
+    <input
+      id="desc"
+      required
+      [(ngModel)]="desc"
+      name="desc"
+      placeholder="Describe your project"
+    />
+    <input
+      id="tasks"
+      required
+      [(ngModel)]="tasks"
+      name="tasks"
+      placeholder="Add tasks to your project"
+    />
+    <button class="btn" type="submit">Submit</button>
+    <small class="error" *ngIf="myForm.invalid && myForm.touched"
+      >You must enter a value</small
+    >
+  </form>
+</div>

@@ -1,0 +1,39 @@
+.btn {
+  padding: 1em;
+  margin-right: 0.5em;
+}
+.project-task {
+  padding-bottom: 1em;
+}
+input {
+  border: none;
+  min-width: 50vw;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.example-box {
+  padding: 0.8em;
+  border-bottom: solid 1px var(--box-shadow);
+  box-shadow: var(--box-shadow-content);
+  box-sizing: border-box;
+  cursor: pointer;
+  color: var(--text);
+  box-sizing: border-box;
+  background: var(--background);
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.cdk-drag-placeholder {
+  opacity: 1;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

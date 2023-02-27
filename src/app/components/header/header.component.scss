@@ -1,0 +1,27 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.title {
+  padding-left: 0.5em;
+}
+.login-icon {
+  margin-right: 2.5em;
+}
+.log-btn-container {
+  margin-right: 1em;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.language {
+  padding: 1em;
+  border-radius: 10px;
+  margin: 0.5em;
+  border: 1px solid rgb(227, 226, 226);
+  color: var(--primary);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  cursor: pointer;
+}

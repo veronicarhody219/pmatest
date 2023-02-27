@@ -1,0 +1,35 @@
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr 5em;
+
+  transition: 1s ease-in-out;
+}
+.form-container:hover {
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 5px 10px 0px;
+}
+.title h3 {
+  margin-bottom: 0.5em;
+}
+#group,
+#name,
+#desc,
+#tasks {
+  background-color: var(--iconbackground);
+  padding: 1em 1em;
+  border: var(--iconcolor) 1px solid;
+  text-align: justify;
+}
+
+.error {
+  padding: 0.5em;
+  color: var(--warning);
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid var(--warning); /* red */
+}

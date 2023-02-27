@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+.mat-icon {
+  font-size: 0.8rem;
+}
+
+.icon-container {
+  margin-left: auto;
+  padding-left: 0.5em;
+  margin-left: auto;
+  justify-items: flex-end;
+}
+
+.example-list {
+  max-width: 100%;
+  border: solid 1px var(--box-shadow);
+  min-height: 60px;
+  display: block;
+  background: var(--background);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--box-shadow-content);
+}
+
+.example-box {
+  padding: 0.8em;
+  border-bottom: solid 1px var(--box-shadow);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: var(--background);
+  color: var(--text);
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 1;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
