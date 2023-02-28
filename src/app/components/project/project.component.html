@@ -2,11 +2,11 @@
   <div class="example-box" *ngFor="let project of projects" cdkDrag>
     <div class="container">
       <div>
-        <a routerLink="detail/{{ project._id }}">{{ project.name }}</a>
+        <a routerLink="detail/{{ project._id }}">{{ project.pname }}</a>
       </div>
 
       <div class="icon-container">
-        <a routerLink="detail/{{ project._id }}"><mat-icon>edit</mat-icon></a>
+        <a routerLink="/detail/{{ project._id }}"><mat-icon>edit</mat-icon></a>
 
         <mat-icon (click)="deleteProject(project._id)">delete</mat-icon>
       </div>

@@ -10,6 +10,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { AddProjectComponent } from '../add-project/add-project.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-projects',
@@ -19,17 +21,20 @@ import { NgForm } from '@angular/forms';
 export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
   edit: boolean = false;
-  @ViewChild('projectForm') form: NgForm;
 
   constructor(
     private projectService: ProjectService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.getProjects();
+    this.projectService.RequiredRefresh.subscribe((result) => {
+      this.getProjects();
+    });
   }
   getProjects() {
     this.projectService.GetAllProjects().subscribe((projects) => {
@@ -41,19 +46,13 @@ export class ProjectsComponent implements OnInit {
     console.log(id);
     let askBeforeDeleting = confirm('Do you want to delete this project?');
     if (askBeforeDeleting) {
-      this.projectService.DeleteProject(id).subscribe();
+      this.projectService.DeleteProject(id).subscribe((result) => {
+        this.getProjects();
+      });
     }
   }
-  editProject(id: string) {
-    let currentProject = this.projects.find((p) => p._id === id);
-
-    this.projectService.UpdateProject(currentProject).subscribe();
-    this.form.setValue({
-      group: currentProject.group,
-      name: currentProject.name,
-      desc: currentProject.desc,
-      tasks: currentProject.tasks,
-    });
+  deleteTask(id){
+console.log("deleted task")
   }
 
   save(id: string) {
@@ -78,5 +77,17 @@ export class ProjectsComponent implements OnInit {
   }
   dropInside(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.projects, event.previousIndex, event.currentIndex);
+  }
+
+  openDialog(id: string): void {
+    const dialogRef = this.dialog.open(AddProjectComponent, {
+      data: { id },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
+  }
+  editProject(id: string) {
+    this.openDialog(id);
   }
 }

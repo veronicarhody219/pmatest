@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../interface/project';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, throwError, BehaviorSubject, Subject } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import {
   HttpClient,
   HttpHeaders,
@@ -16,6 +16,11 @@ export class ProjectService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+
+  private _refreshrequired = new Subject<void>();
+  get RequiredRefresh() {
+    return this._refreshrequired;
+  }
   projects: Project[] = [];
   constructor(private http: HttpClient) {}
 
@@ -39,6 +44,20 @@ export class ProjectService {
       `${this.url}/${project._id}`,
       project,
       this.httpOptions
+    );
+  }
+  saveProject(inputdata: any) {
+    return this.http.post(this.url, inputdata).pipe(
+      tap(() => {
+        this.RequiredRefresh.next();
+      })
+    );
+  }
+  editProject(id: string, inputdata: any) {
+    return this.http.put(this.url + '/' + id, inputdata).pipe(
+      tap(() => {
+        this.RequiredRefresh.next();
+      })
     );
   }
 }

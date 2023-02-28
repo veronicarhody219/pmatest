@@ -39,6 +39,7 @@ export class DetailComponent implements OnInit {
       this.project.tasks[this.currentId] = (<HTMLInputElement>(
         document.getElementById('project-tasks')
       )).value;
+      this.editMode = false;
     }
     this.newTasks = '';
   }

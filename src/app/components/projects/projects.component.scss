@@ -4,6 +4,8 @@
   grid-auto-rows: 1fr;
   gap: 10px;
   margin-bottom: 1.8em;
+  justify-content: center;
+  align-items: flex-start;
 }
 .mat-card {
   color: var(--text);

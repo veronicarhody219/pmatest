@@ -20,7 +20,7 @@ import {
 import { ProjectService } from './services/project.service';
 import { DetailComponent } from './components/detail/detail.component';
 import { LoginComponent } from './auth/login/login.component';
-import { LogoutComponent } from './auth/logout/logout.component';
+
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './services/authconfig.interceptor';
@@ -44,7 +44,6 @@ export function createTranslateLoader(http: HttpClient) {
     AddProjectComponent,
     DetailComponent,
     LoginComponent,
-    LogoutComponent,
     UserProfileComponent,
     SignupComponent,
     HomeComponent,

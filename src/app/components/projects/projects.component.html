@@ -27,6 +27,8 @@
     </mat-card>
   </div>
 </div> -->
+
+<button class="btn btn-complementary" (click)="openDialog('')">Add project</button>
 <div cdkDropList (cdkDropListDropped)="dropInside($event)">
   <div class="container" cdkDropListGroup>
     <div *ngFor="let project of projects" cdkDrag>
@@ -38,11 +40,11 @@
       >
         <mat-card-header>
           <mat-card-title>
-            <h2 class="project-name">{{ project.name }}</h2>
+            <h2 class="project-name">{{ project.pname }}</h2>
 
             <div class="btn-container">
               <button mat-icon-button>
-                <a routerLink="detail/{{ project._id }}"
+                <a routerLink="/detail/{{ project._id }}"
                   ><mat-icon>edit</mat-icon></a
                 >
               </button>
@@ -66,10 +68,10 @@
           <div class="example-box" *ngFor="let task of project.tasks" cdkDrag>
             {{ task }}
             <div class="btn-container">
-              <button mat-icon-button>
+              <button mat-icon-button (click)="editProject(project._id)">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button>
+              <button mat-icon-button (click)="deleteTask(project._id)">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>
@@ -77,19 +79,9 @@
 
           <mat-divider></mat-divider>
         </mat-card-content>
-        <!-- <mat-card-actions>
-          <button mat-button>
-            <mat-icon>add</mat-icon>
-          </button>
-          <button mat-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-button (click)="save(project._id)">
-            <mat-icon>save</mat-icon>
-          </button>
-        </mat-card-actions> -->
+        
       </mat-card>
     </div>
   </div>
 </div>
-<!-- cdkDropList (cdkDropListDropped)="dropInside($event)"  -->
+

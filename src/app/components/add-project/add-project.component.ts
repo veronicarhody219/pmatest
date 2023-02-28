@@ -6,14 +6,21 @@ import {
   NgZone,
   OnChanges,
   SimpleChanges,
+  Inject,
 } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 
-import { FormControl, Validators, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ProjectService } from 'src/app/services/project.service';
-import { Project} from 'src/app/interface/project';
+import { Project } from 'src/app/interface/project';
 import { HttpClient } from '@angular/common/http';
+
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-project',
@@ -21,27 +28,62 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./add-project.component.scss'],
 })
 export class AddProjectComponent implements OnInit {
-  group: string = '';
-  name: string = '';
-  desc: string = '';
-  tasks: string[]=[]
-  @ViewChild('myForm') form: NgForm;
-  constructor(private projectService: ProjectService) {}
-  ngOnInit() {}
+  editData: any;
+  editMode: boolean = false;
+  currentId: string;
 
-  submitForm() {
-    let newProject = {
-      group: this.group,
-      name: this.name,
-      desc: this.desc,
-      tasks: this.tasks,
-    };
+  constructor(
+    private projectService: ProjectService,
+    public dialogRef: MatDialogRef<AddProjectComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private ngZone: NgZone
+  ) {}
 
-    this.projectService.AddProject(newProject).subscribe((res) => {
-      this.projectService.projects.push(newProject);
-      console.log(this.projectService.projects);
-      console.log(res);
+  reactiveForm = new FormGroup({
+    group: new FormControl('', Validators.required),
+    pname: new FormControl('', Validators.required),
+    desc: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    tasks: new FormControl([], [Validators.required, Validators.minLength(6)]),
+  });
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  saveProject() {
+    if (this.reactiveForm.valid && !this.editMode) {
+      this.projectService
+        .saveProject(this.reactiveForm.value)
+        .subscribe((result) => {
+          console.log(result);
+          this.dialogRef.close();
+        });
+    } else {
+      this.projectService
+        .editProject(this.currentId, this.reactiveForm.value)
+        .subscribe((result) => {
+          console.log(result);
+          this.dialogRef.close();
+        });
+    }
+  }
+
+  loadEditData(id: string) {
+    this.currentId = id;
+    this.projectService.GetProject(id).subscribe((item) => {
+      this.editMode = true;
+      this.editData = item;
+
+      this.reactiveForm.setValue({
+        group: this.editData.group,
+        pname: this.editData.pname,
+        desc: this.editData.desc,
+        tasks: this.editData.tasks,
+      });
     });
-    this.form.reset();
+  }
+
+  ngOnInit(): void {
+    if (this.data.id != null && this.data.id != '') {
+      this.loadEditData(this.data.id);
+    }
   }
 }
