@@ -7,9 +7,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { NgForm } from '@angular/forms';
+
 import { AddProjectComponent } from '../add-project/add-project.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -21,12 +19,12 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
   edit: boolean = false;
+  errorMessage: string;
+  currentId;
 
   constructor(
     private projectService: ProjectService,
-    private route: ActivatedRoute,
-    private location: Location,
-    private router: Router,
+
     public dialog: MatDialog
   ) {}
 
@@ -37,10 +35,12 @@ export class ProjectsComponent implements OnInit {
     });
   }
   getProjects() {
-    this.projectService.GetAllProjects().subscribe((projects) => {
-      console.log(projects);
-      this.projects = projects;
-    });
+    this.projectService.GetAllProjects().subscribe(
+      (projects) => {
+        
+        this.projects = projects;
+      }
+    );
   }
   deleteProject(id: string) {
     console.log(id);
@@ -51,21 +51,32 @@ export class ProjectsComponent implements OnInit {
       });
     }
   }
-  deleteTask(id){
-console.log("deleted task")
+  deleteTask(id, i, tasks) {
+    if (confirm('Are you sure to delete this task?')) {
+      tasks.splice(i, 1);
+    }
+    let currentProject = this.projects.find((p) => p._id === id);
+    
+    this.projectService.UpdateProject(currentProject).subscribe();
   }
+  editTask(id) {}
 
   save(id: string) {
     let currentProject = this.projects.find((p) => p._id === id);
+    this.currentId = id;
     this.projectService.UpdateProject(currentProject).subscribe();
   }
-  drop(event: CdkDragDrop<string[]>) {
+  drop(id, event: CdkDragDrop<string[]>) {
+    let currentProject;
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
+
+      // currentProject = this.projects.find((p) => p._id === id);
+      // this.projectService.UpdateProject(currentProject).subscribe();
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -73,10 +84,14 @@ console.log("deleted task")
         event.previousIndex,
         event.currentIndex
       );
+
+      // currentProject = this.projects.find((p) => p._id === id);
+      // this.projectService.UpdateProject(currentProject).subscribe();
     }
   }
   dropInside(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.projects, event.previousIndex, event.currentIndex);
+    
   }
 
   openDialog(id: string): void {

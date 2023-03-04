@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   grid-auto-rows: 1fr;
   gap: 10px;
   margin-bottom: 1.8em;
@@ -15,10 +15,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
 }
-.mat-icon{
- font-size: 1rem;
+.mat-icon {
+  font-size: 1rem;
 }
 .mat-card-actions {
   display: flex;
@@ -43,4 +42,8 @@
   cursor: move;
   background: white;
   font-size: 14px;
+}
+.btn-complementary {
+  background-color: var(--complementary);
+  color: white;
 }

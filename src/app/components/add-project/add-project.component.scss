@@ -1,10 +1,10 @@
-.form-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr 1fr 5em;
-
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   transition: 1s ease-in-out;
 }
-.form-container:hover {
+.mat-dialog-container:hover {
   box-shadow: rgba(17, 12, 46, 0.15) 0px 5px 10px 0px;
 }
 .title h3 {

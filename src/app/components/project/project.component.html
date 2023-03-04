@@ -2,7 +2,7 @@
   <div class="example-box" *ngFor="let project of projects" cdkDrag>
     <div class="container">
       <div>
-        <a routerLink="detail/{{ project._id }}">{{ project.pname }}</a>
+        <a routerLink="/detail/{{ project._id }}">{{ project.pname }}</a>
       </div>
 
       <div class="icon-container">

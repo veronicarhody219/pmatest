@@ -16,6 +16,9 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProjects();
+    this.projectService.RequiredRefresh.subscribe((result) => {
+      this.getProjects();
+    });
   }
   getProjects() {
     this.projectService.GetAllProjects().subscribe((projects) => {

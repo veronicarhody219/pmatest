@@ -1,5 +1,12 @@
+
+
 /* You can add global styles to this file, and also import other style files */
 :root {
+  --primary: rgb(187, 17, 77);
+  --complementary: #11bb7f;
+  --secondary: rgb(154, 2, 61);
+  --border: rgb(247, 164, 193);
+  box-sizing: border-box;
   --text: rgb(68, 38, 44);
   --background: rgb(253, 243, 245);
   --iconbackground: rgb(253, 244, 245);
@@ -13,63 +20,6 @@
   --box-shadow-secondary: #bfd8d3;
   --text-secondary: #26443e;
   --box-shadow-content: rgba(17, 12, 46, 0.15) 0px 5px 10px 0px;
-}
-
-// body {
-//   margin: 0;
-//   font-family: Roboto, "Helvetica Neue", sans-serif;
-//   background-color: var(--background);
-//   color: var(--text);
-//   font-size: 1rem;
-//   padding: 0;
-//   margin: 0;
-// }
-// .mat-icon-button {
-//   background-color: var(--iconbackground);
-//   color: var(--iconcolor);
-// }
-// .mat-toolbar {
-//   padding: 1em;
-// }
-// .mat-icon {
-//   color: var(--iconcolor);
-// }
-// .mat-icon:hover {
-//   transition: 0.2s;
-//   transform: rotate(-30deg);
-// }
-// .mat-card:hover {
-//   transform: perspective(100px) translateZ(5px);
-//   transition: 0.5s;
-// }
-// a {
-//   text-decoration: none;
-//   cursor: pointer;
-// }
-// .btn {
-//   border: var(--iconcolor) 1px solid;
-//   background-color: var(--iconbackground);
-//   cursor: pointer;
-// }
-// .btn-radius {
-//   border-radius: 10px;
-// }
-// input {
-//   background-color: var(--iconbackground);
-//   padding: 1em 1em;
-//   border: var(--iconcolor) 1px solid;
-//   text-align: justify;
-// }
-// .input-radius {
-//   border-radius: 10px;
-// }
-/* You can add global styles to this file, and also import other style files */
-:root {
-  --primary: rgb(187, 17, 77);
-  --complementary: #11bb7f;
-  --secondary: rgb(154, 2, 61);
-  --border: rgb(247, 164, 193);
-  box-sizing: border-box;
 }
 
 html,

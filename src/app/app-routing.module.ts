@@ -20,6 +20,11 @@ const routes: Routes = [
     component: ProjectsComponent,
     canActivate: [GuardAuthGuard],
   },
+  {
+    path: 'project',
+    component: ProjectComponent,
+    canActivate: [GuardAuthGuard],
+  },
   { path: 'detail/:id', component: DetailComponent },
   { path: 'login', component: LoginComponent },
   {

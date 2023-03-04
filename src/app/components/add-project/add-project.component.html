@@ -1,4 +1,4 @@
-    <!-- _id?: string;
+<!-- _id?: string;
   group: string;
   pname: string;
   desc: string;
@@ -6,7 +6,11 @@
 
 <div class="container" #content>
   <h1 mat-dialog-title>{{ "Project detail" | translate }}</h1>
-  <form [formGroup]="reactiveForm" (ngSubmit)="saveProject()">
+  <form
+    class="form-container"
+    [formGroup]="reactiveForm"
+    (ngSubmit)="saveProject()"
+  >
     <div mat-dialog-content>
       <mat-form-field>
         <mat-label>{{ "Project team" | translate }}</mat-label>
@@ -20,10 +24,17 @@
         <mat-label>{{ "Description" | translate }}</mat-label>
         <input type="text" matInput formControlName="desc" />
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>{{ "Project tasks" | translate }}</mat-label>
-        <input type="text" matInput formControlName="tasks" />
-      </mat-form-field>
+      <div formArrayName="tasks">
+        <div *ngFor="let alias of tasks.controls; let i = index">
+          <!-- The repeated task template -->
+          <label for="task-{{ i }}">Task:</label>
+          <input id="task-{{ i }}" type="text" [formControlName]="i" />
+        </div>
+        <button class="btn" type="button" (click)="addTask()">
+          + Add another task
+        </button>
+      </div>
+      <mat-error *ngIf="errorMessage != null">{{ errorMessage }}</mat-error>
     </div>
     <div mat-dialog-actions>
       <button mat-button mat-dialog-close>{{ "Close" | translate }}</button>
