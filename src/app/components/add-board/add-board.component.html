@@ -1,0 +1,24 @@
+<form class="form-container" [formGroup]="boardForm" (ngSubmit)="createBoard()">
+  <h2>New Board</h2>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>{{ "Board title" | translate }}</mat-label>
+      <input type="text" matInput formControlName="title" />
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">
+        {{ "Close" | translate }}
+      </button>
+      <button
+        type="submit"
+        mat-button
+        mat-dialog-close
+        mat-dialog-close="data.title"
+        cdkFocusInitial
+      >
+        {{ "OK" | translate }}
+      </button>
+    </div>
+  </div>
+</form>

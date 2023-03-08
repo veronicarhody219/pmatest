@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +9,27 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  email;
   constructor(
     public authService: AuthService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private location: Location
   ) {
     translate.addLangs(['en', 'vi']);
     translate.setDefaultLang('en');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUser();
+  }
   changeLang(lang) {
     this.translate.use(lang);
+  }
+  getUser() {
+    this.email = this.authService.getEmail();
+    console.log(this.email);
+  }
+  goback() {
+    this.location.back();
   }
 }

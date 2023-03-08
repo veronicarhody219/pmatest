@@ -1,0 +1,17 @@
+<button class="btn btn-complementary" (click)="createBoard('')">
+  {{ "Create board" | translate }}
+</button>
+<div class="container">
+  <div class="card" *ngFor="let board of boards">
+    <a routerLink="/boards/{{ board._id }}">{{ board.title }}</a>
+
+    <div class="btn-container">
+      <button mat-icon-button (click)="updateBoard(board._id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteBoard(board._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

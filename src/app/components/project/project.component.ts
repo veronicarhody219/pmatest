@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+
 import { Project } from 'src/app/interface/project';
 import { ProjectService } from 'src/app/services/project.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';

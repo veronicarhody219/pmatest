@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -7,8 +13,9 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
+  @ViewChild('email') nameElementRef: ElementRef;
   constructor(
     public fb: FormBuilder,
     public authService: AuthService,
@@ -20,11 +27,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    console.log(this.loginForm);
+  }
+  ngAfterViewInit() {
+    this.nameElementRef.nativeElement.focus();
+  }
   login() {
     this.authService.login(this.loginForm.value).subscribe((item: any) => {
+      
       localStorage.setItem('token', item.token);
+      localStorage.setItem('email', item.email);
       this.loginForm.reset();
       this.router.navigate(['projects']);
     });

@@ -23,5 +23,8 @@
   "Action": "Action",
   "Edit": "Edit",
   "Delete": "Delete",
-  "Submit": "Submit"
+  "Submit": "Submit",
+  "boards": "boards",
+  "Back": "Back",
+  "Create board": "Create board"
 }

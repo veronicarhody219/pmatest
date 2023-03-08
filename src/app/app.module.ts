@@ -28,6 +28,9 @@ import { HomeComponent } from './components/home/home.component';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BoardComponent } from './components/board/board.component';
+import { BoardDetailComponent } from './components/board-detail/board-detail.component';
+import { AddBoardComponent } from './components/add-board/add-board.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -47,6 +50,9 @@ export function createTranslateLoader(http: HttpClient) {
     UserProfileComponent,
     SignupComponent,
     HomeComponent,
+    BoardComponent,
+    BoardDetailComponent,
+    AddBoardComponent,
   ],
   imports: [
     BrowserModule,

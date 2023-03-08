@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interface/user';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import {
   HttpClient,
@@ -15,7 +15,10 @@ export class AuthService {
   url: string = 'http://localhost:8000/auth';
   apiUrlLogin = 'http://localhost:8000/auth/login';
   apiUrlRegister = 'http://localhost:8000/auth/signup';
-  constructor(private http: HttpClient, private router: Router) {}
+  private _currentUser : BehaviorSubject<boolean|any> = new BehaviorSubject(null)
+  constructor(private http: HttpClient, private router: Router) {
+    
+  }
   login(userCred: any) {
     return this.http.post(this.apiUrlLogin, userCred);
   }
@@ -41,8 +44,12 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+  getEmail(){
+    return localStorage.getItem("email")
+  }
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
     this.router.navigate(['login']);
   }
 }

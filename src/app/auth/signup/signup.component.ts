@@ -27,6 +27,7 @@ export class SignupComponent implements OnInit {
       console.log(res);
 
       localStorage.setItem('token', res.token);
+      localStorage.setItem('email', res.email);
       this.signupForm.reset();
       this.router.navigate(['login']);
     });

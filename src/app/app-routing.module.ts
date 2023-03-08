@@ -9,6 +9,8 @@ import { ProjectComponent } from './components/project/project.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { GuardAuthGuard } from './auth/guard-auth.guard';
 import { HomeComponent } from './components/home/home.component';
+import { BoardComponent } from './components/board/board.component';
+import { BoardDetailComponent } from './components/board-detail/board-detail.component';
 
 const routes: Routes = [
   {
@@ -21,11 +23,18 @@ const routes: Routes = [
     canActivate: [GuardAuthGuard],
   },
   {
+    path: 'boards',
+    component: BoardComponent,
+    canActivate: [GuardAuthGuard],
+  },
+  { path: 'boards/:id', component: BoardDetailComponent },
+  {
     path: 'project',
     component: ProjectComponent,
     canActivate: [GuardAuthGuard],
   },
   { path: 'detail/:id', component: DetailComponent },
+
   { path: 'login', component: LoginComponent },
   {
     path: 'userprofile/:id',

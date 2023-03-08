@@ -1,36 +1,44 @@
-<nav>
-  <button class="btn btn-nav">
-    <a routerLink="">{{ "home" | translate }}</a>
-  </button>
-  <button class="btn btn-nav" *ngIf="!authService.loggedIn()">
-    <a routerLink="login">{{ "login" | translate }}</a>
-  </button>
-  <button class="btn btn-nav" *ngIf="!authService.loggedIn()">
-    <a routerLink="signup">{{ "signup" | translate }}</a>
-  </button>
-  <button
-    class="btn btn-nav"
-    *ngIf="authService.loggedIn()"
-    (click)="authService.logout()"
-  >
-    <a routerLink="signup">{{ "logout" | translate }}</a>
-  </button>
-
-  <button class="btn btn-nav" *ngIf="authService.loggedIn()">
-    <a routerLink="projects">{{ "projects" | translate }}</a>
-  </button>
-
-  <select
-    class="language"
-    #selectedLang
-    (change)="changeLang(selectedLang.value)"
-  >
-    <option
-      *ngFor="let lang of translate.getLangs()"
-      [value]="lang"
-      [selected]="lang === translate.currentLang"
+<nav class="nav">
+  <div class="left">
+    <button (click)="goback()" class="btn">{{ "Back" | translate }}</button>
+    <button class="btn btn-nav">
+      <a routerLink="">{{ "home" | translate }}</a>
+    </button>
+    <!-- <button class="btn btn-nav" *ngIf="authService.loggedIn()">
+      <a routerLink="projects">{{ "projects" | translate }}</a>
+    </button> -->
+    <button class="btn btn-nav" *ngIf="authService.loggedIn()">
+      <a routerLink="boards">{{ "boards" | translate }}</a>
+    </button>
+  </div>
+  <div class="right">
+    {{ email }}
+    <button class="btn btn-nav" *ngIf="!authService.loggedIn()">
+      <a routerLink="login">{{ "login" | translate }}</a>
+    </button>
+    <button class="btn btn-nav" *ngIf="!authService.loggedIn()">
+      <a routerLink="signup">{{ "signup" | translate }}</a>
+    </button>
+    <button
+      class="btn btn-nav"
+      *ngIf="authService.loggedIn()"
+      (click)="authService.logout()"
     >
-      {{ lang }}
-    </option>
-  </select>
+      <a routerLink="signup">{{ "logout" | translate }}</a>
+    </button>
+
+    <select
+      class="language"
+      #selectedLang
+      (change)="changeLang(selectedLang.value)"
+    >
+      <option
+        *ngFor="let lang of translate.getLangs()"
+        [value]="lang"
+        [selected]="lang === translate.currentLang"
+      >
+        {{ lang }}
+      </option>
+    </select>
+  </div>
 </nav>

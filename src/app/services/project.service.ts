@@ -21,7 +21,7 @@ export class ProjectService {
   editMode: boolean = false;
   currentId: number;
 
-  private _refreshrequired = new Subject<void>();
+  public _refreshrequired = new Subject<void>();
   get RequiredRefresh() {
     return this._refreshrequired;
   }
@@ -44,13 +44,13 @@ export class ProjectService {
     return this.http.delete<Project[]>(this.url);
   }
   UpdateProject(project: Project): Observable<any> {
-    return this.http.put<Project>(
-      `${this.url}/${project._id}`,
-      project,
-      this.httpOptions
-    ).pipe(tap(()=>{
-      this.RequiredRefresh.next()
-    }));
+    return this.http
+      .put<Project>(`${this.url}/${project._id}`, project, this.httpOptions)
+      .pipe(
+        tap(() => {
+          this.RequiredRefresh.next();
+        })
+      );
   }
   editProject(id: string, inputdata: any) {
     return this.http.put(this.url + '/' + id, inputdata).pipe(
@@ -72,11 +72,5 @@ export class ProjectService {
         this.RequiredRefresh.next();
       })
     );
-  }
-
-  deleteTask(i: any) {
-    if (confirm('Are you sure to delete this task?')) {
-      this.project.tasks.splice(i, 1);
-    }
   }
 }

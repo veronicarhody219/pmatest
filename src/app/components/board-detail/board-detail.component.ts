@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Project } from 'src/app/interface/project';
 import { ProjectService } from 'src/app/services/project.service';
@@ -12,11 +12,11 @@ import { AddProjectComponent } from '../add-project/add-project.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss'],
+  selector: 'app-board-detail',
+  templateUrl: './board-detail.component.html',
+  styleUrls: ['./board-detail.component.scss'],
 })
-export class ProjectsComponent implements OnInit {
+export class BoardDetailComponent implements OnInit {
   projects: Project[] = [];
   edit: boolean = false;
   errorMessage: string;
@@ -24,6 +24,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
+
     public dialog: MatDialog
   ) {}
 
@@ -36,7 +37,6 @@ export class ProjectsComponent implements OnInit {
   getProjects() {
     this.projectService.GetAllProjects().subscribe((projects) => {
       this.projects = projects;
-      console.log(this.projects);
     });
   }
   deleteProject(id: string) {
@@ -56,6 +56,14 @@ export class ProjectsComponent implements OnInit {
     this.projectService.UpdateProject(currentProject).subscribe();
   }
   editTask(id) {}
+  isAddTask(id):boolean {
+    let currentProject = this.projects.find((p) => p._id === id);
+    return !currentProject;
+  }
+  addTask() {
+    this.isAddTask
+    console.log('add task');
+  }
 
   save(id: string) {
     let currentProject = this.projects.find((p) => p._id === id);
@@ -63,7 +71,6 @@ export class ProjectsComponent implements OnInit {
     this.projectService.UpdateProject(currentProject).subscribe();
   }
   drop(id, event: CdkDragDrop<string[]>) {
-    let previousProject;
     let currentProject;
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -72,10 +79,8 @@ export class ProjectsComponent implements OnInit {
         event.currentIndex
       );
 
-      currentProject = this.projects.find((p) => p._id === id);
-      this.projectService.UpdateProject(currentProject).subscribe();
-      console.log(id);
-      console.log(currentProject);
+      // currentProject = this.projects.find((p) => p._id === id);
+      // this.projectService.UpdateProject(currentProject).subscribe();
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -83,14 +88,8 @@ export class ProjectsComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      console.log('container data:', event.container);
-      console.log('previous container data:', event.previousContainer);
-      console.log('previous index:', event.previousIndex);
-      console.log('current Index', event.currentIndex);
 
-      currentProject = this.projects.find((p) => p._id === id);
-      // console.log(id);
-      // console.log(currentProject);
+      // currentProject = this.projects.find((p) => p._id === id);
       // this.projectService.UpdateProject(currentProject).subscribe();
     }
   }

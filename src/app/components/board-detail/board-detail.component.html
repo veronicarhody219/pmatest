@@ -43,6 +43,7 @@
             cdkDrag
           >
             {{ task }}
+
             <div class="btn-container">
               <button mat-icon-button (click)="editTask(i)">
                 <mat-icon>edit</mat-icon>
@@ -54,6 +55,12 @@
           </div>
 
           <mat-divider></mat-divider>
+          <div *ngIf="isAddTask(project._id)">
+            <button class="btn" (click)="addTask()">+ Add Task</button>
+          </div>
+          <div *ngIf="isAddTask(project._id)">
+            <input type="text" placeholder="add new task"/>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
