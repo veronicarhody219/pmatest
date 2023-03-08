@@ -55,7 +55,9 @@ export class ProjectsComponent implements OnInit {
     }
     this.projectService.UpdateProject(currentProject).subscribe();
   }
-  editTask(id) {}
+  editTask(id) {
+    console.log(`editing task ${id}`)
+  }
 
   save(id: string) {
     let currentProject = this.projects.find((p) => p._id === id);

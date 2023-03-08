@@ -55,13 +55,16 @@ export class BoardDetailComponent implements OnInit {
     }
     this.projectService.UpdateProject(currentProject).subscribe();
   }
-  editTask(id) {}
-  isAddTask(id):boolean {
+  
+  editTask(id) {
+    console.log(`editing task ${id}`);
+  }
+  isAddTask(id): boolean {
     let currentProject = this.projects.find((p) => p._id === id);
     return !currentProject;
   }
   addTask() {
-    this.isAddTask
+    this.isAddTask;
     console.log('add task');
   }
 
