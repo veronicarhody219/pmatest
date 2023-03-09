@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       localStorage.setItem('token', item.token);
       localStorage.setItem('email', item.email);
       this.loginForm.reset();
-      this.router.navigate(['projects']);
+      this.router.navigate(['boards']);
     });
   }
 }
