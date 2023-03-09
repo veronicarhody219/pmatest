@@ -12,13 +12,16 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  url: string = 'http://localhost:8000/auth';
-  apiUrlLogin = 'http://localhost:8000/auth/login';
-  apiUrlRegister = 'http://localhost:8000/auth/signup';
-  private _currentUser : BehaviorSubject<boolean|any> = new BehaviorSubject(null)
-  constructor(private http: HttpClient, private router: Router) {
-    
-  }
+  url: string = 'https://pmabackend.onrender.com/auth';
+  apiUrlLogin = 'https://pmabackend.onrender.com/auth/login';
+  apiUrlRegister = 'https://pmabackend.onrender.com/auth/signup';
+  // url: string = 'http://localhost:8000/auth';
+  // apiUrlLogin = 'http://localhost:8000/auth/login';
+  // apiUrlRegister = 'http://localhost:8000/auth/signup';
+  private _currentUser: BehaviorSubject<boolean | any> = new BehaviorSubject(
+    null
+  );
+  constructor(private http: HttpClient, private router: Router) {}
   login(userCred: any) {
     return this.http.post(this.apiUrlLogin, userCred);
   }
@@ -44,8 +47,8 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
-  getEmail(){
-    return localStorage.getItem("email")
+  getEmail() {
+    return localStorage.getItem('email');
   }
   logout() {
     localStorage.removeItem('token');

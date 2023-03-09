@@ -7,7 +7,8 @@ import { ProjectService } from './project.service';
   providedIn: 'root',
 })
 export class BoardService {
-  urlBoard = 'http://localhost:8000/boards';
+  // urlBoard = 'http://localhost:8000/boards';
+  urlBoard = 'https://pmabackend.onrender.com/boards';
   constructor(
     private http: HttpClient,
     private projectService: ProjectService

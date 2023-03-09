@@ -12,7 +12,8 @@ import {
   providedIn: 'root',
 })
 export class ProjectService {
-  url: string = 'http://localhost:8000/projects';
+  // url: string = 'http://localhost:8000/projects';
+  url: string = 'https://pmabackend.onrender.com/projects';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
