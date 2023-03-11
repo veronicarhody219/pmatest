@@ -82,8 +82,8 @@ export class BoardDetailComponent implements OnInit {
         event.currentIndex
       );
 
-      // currentProject = this.projects.find((p) => p._id === id);
-      // this.projectService.UpdateProject(currentProject).subscribe();
+      currentProject = this.projects.find((p) => p._id === id);
+      this.projectService.UpdateProject(currentProject).subscribe();
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -93,7 +93,7 @@ export class BoardDetailComponent implements OnInit {
       );
 
       // currentProject = this.projects.find((p) => p._id === id);
-      // this.projectService.UpdateProject(currentProject).subscribe();
+      //this.projectService.UpdateProject(currentProject).subscribe();
     }
   }
   dropInside(event: CdkDragDrop<string[]>) {
