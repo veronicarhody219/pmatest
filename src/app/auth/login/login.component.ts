@@ -26,16 +26,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-
-  ngOnInit(): void {
-    console.log(this.loginForm);
-  }
+  ngOnInit(): void {}
   ngAfterViewInit() {
     this.nameElementRef.nativeElement.focus();
   }
   login() {
     this.authService.login(this.loginForm.value).subscribe((item: any) => {
-      
       localStorage.setItem('token', item.token);
       localStorage.setItem('email', item.email);
       this.loginForm.reset();
