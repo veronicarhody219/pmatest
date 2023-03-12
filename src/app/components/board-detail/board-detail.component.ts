@@ -41,8 +41,6 @@ export class BoardDetailComponent implements OnInit {
   saveTask(id) {
     let currentProject = this.projects.find((p) => p._id === id);
     const tasks = this.taskForm.value.tasks;
-    console.log(currentProject.tasks);
-    console.log(this.taskForm.value.tasks);
 
     currentProject.tasks = currentProject.tasks.concat(tasks);
 
@@ -76,11 +74,10 @@ export class BoardDetailComponent implements OnInit {
     }
     this.projectService.UpdateProject(currentProject).subscribe();
   }
- 
+
   editTask(id) {
     console.log(`editing task ${id}`);
   }
- 
 
   save(id: string) {
     let currentProject = this.projects.find((p) => p._id === id);

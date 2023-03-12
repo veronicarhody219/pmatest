@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { ProjectComponent } from './components/project/project.component';
+
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
@@ -39,8 +38,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectsComponent,
-    ProjectComponent,
+
     PagenotfoundComponent,
     FooterComponent,
     HeaderComponent,

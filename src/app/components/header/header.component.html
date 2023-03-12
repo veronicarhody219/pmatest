@@ -19,12 +19,15 @@
     <button class="btn btn-nav" *ngIf="!authService.loggedIn()">
       <a routerLink="signup">{{ "signup" | translate }}</a>
     </button>
+    <button class="btn btn-nav" *ngIf="authService.loggedIn()">
+      <a routerLink="/userprofile">{{ "Profile" | translate }}</a>
+    </button>
     <button
       class="btn btn-nav"
       *ngIf="authService.loggedIn()"
       (click)="authService.logout()"
     >
-      <a routerLink="signup">{{ "logout" | translate }}</a>
+      <a routerLink="login">{{ "logout" | translate }}</a>
     </button>
 
     <select

@@ -5,8 +5,7 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
 import { SignupComponent } from './auth/signup/signup.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
-import { ProjectComponent } from './components/project/project.component';
-import { ProjectsComponent } from './components/projects/projects.component';
+
 import { GuardAuthGuard } from './auth/guard-auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { BoardComponent } from './components/board/board.component';
@@ -17,27 +16,19 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
-  {
-    path: 'projects',
-    component: ProjectsComponent,
-    canActivate: [GuardAuthGuard],
-  },
+  
   {
     path: 'boards',
     component: BoardComponent,
     canActivate: [GuardAuthGuard],
   },
   { path: 'boards/:id', component: BoardDetailComponent },
-  {
-    path: 'project',
-    component: ProjectComponent,
-    canActivate: [GuardAuthGuard],
-  },
+ 
   { path: 'detail/:id', component: DetailComponent },
 
   { path: 'login', component: LoginComponent },
   {
-    path: 'userprofile/:id',
+    path: 'userprofile',
     component: UserProfileComponent,
     canActivate: [GuardAuthGuard],
   },

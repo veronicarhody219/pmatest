@@ -11,7 +11,7 @@ import { AddBoardComponent } from '../add-board/add-board.component';
 })
 export class BoardComponent implements OnInit {
   boards = [];
- 
+
   constructor(private boardService: BoardService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -29,7 +29,6 @@ export class BoardComponent implements OnInit {
   getBoards() {
     this.boardService.getBoards().subscribe((boards: any) => {
       this.boards = boards;
-      console.log(this.boards);
     });
   }
   updateBoard(id) {

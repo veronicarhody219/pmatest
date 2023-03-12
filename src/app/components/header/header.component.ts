@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit {
   }
   getUser() {
     this.email = this.authService.getEmail();
-    console.log(this.email);
   }
   goback() {
     this.location.back();
