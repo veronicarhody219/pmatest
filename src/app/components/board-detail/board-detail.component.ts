@@ -7,6 +7,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 import { AddProjectComponent } from '../add-project/add-project.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -24,10 +25,30 @@ export class BoardDetailComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-
+    private formBuilder: FormBuilder,
     public dialog: MatDialog
   ) {}
+  taskForm = this.formBuilder.group({
+    tasks: this.formBuilder.array([this.formBuilder.control('')]),
+  });
 
+  get tasks() {
+    return this.taskForm.get('tasks') as FormArray;
+  }
+  // addTask() {
+  //   this.tasks.push(this.formBuilder.control(''));
+  // }
+  saveTask(id) {
+    let currentProject = this.projects.find((p) => p._id === id);
+    const tasks = this.taskForm.value.tasks;
+    console.log(currentProject.tasks);
+    console.log(this.taskForm.value.tasks);
+
+    currentProject.tasks = currentProject.tasks.concat(tasks);
+
+    this.projectService.UpdateProject(currentProject).subscribe();
+    this.taskForm.reset();
+  }
   ngOnInit(): void {
     this.getProjects();
     this.projectService.RequiredRefresh.subscribe((result) => {
@@ -55,18 +76,11 @@ export class BoardDetailComponent implements OnInit {
     }
     this.projectService.UpdateProject(currentProject).subscribe();
   }
-  
+ 
   editTask(id) {
     console.log(`editing task ${id}`);
   }
-  isAddTask(id): boolean {
-    let currentProject = this.projects.find((p) => p._id === id);
-    return !currentProject;
-  }
-  addTask() {
-    this.isAddTask;
-    console.log('add task');
-  }
+ 
 
   save(id: string) {
     let currentProject = this.projects.find((p) => p._id === id);

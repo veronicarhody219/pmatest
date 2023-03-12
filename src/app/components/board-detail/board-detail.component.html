@@ -55,12 +55,20 @@
           </div>
 
           <mat-divider></mat-divider>
-          <div *ngIf="isAddTask(project._id)">
-            <button class="btn" (click)="addTask()">+ Add Task</button>
-          </div>
-          <div *ngIf="isAddTask(project._id)">
-            <input type="text" placeholder="add new task"/>
-          </div>
+          <form [formGroup]="taskForm">
+            <div formArrayName="tasks">
+              <div class="taskInput" *ngFor="let task of tasks.controls; let i = index">
+                <!-- The repeated task template -->
+                <label for="task-{{ i }}">Task:</label>
+                <input id="task-{{ i }}" type="text" [formControlName]="i" />
+                <button
+                  mat-icon-button
+                  (click)="saveTask(project._id)"
+                ><mat-icon>add</mat-icon></button>
+              </div>
+              
+            </div>
+          </form>
         </mat-card-content>
       </mat-card>
     </div>

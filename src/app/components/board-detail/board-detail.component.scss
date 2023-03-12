@@ -47,3 +47,12 @@
   background-color: var(--complementary);
   color: white;
 }
+.taskInput{
+  display: flex;
+  padding-top: 0.5em;
+  justify-content: center;
+  align-items: center;
+}
+.taskInput label{
+  padding-right: 0.5em;
+}
