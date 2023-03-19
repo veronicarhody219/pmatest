@@ -22,9 +22,7 @@ export class BoardComponent implements OnInit {
   }
   createBoard(id) {
     let dialogRef = this.dialog.open(AddBoardComponent, { data: { id } });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('dialog:', result);
-    });
+    dialogRef.afterClosed().subscribe();
   }
   getBoards() {
     this.boardService.getBoards().subscribe((boards: any) => {
@@ -38,9 +36,7 @@ export class BoardComponent implements OnInit {
     if (
       confirm('Do you want to delete this board including all its content?')
     ) {
-      this.boardService.deleteBoard(id).subscribe((result) => {
-        console.log('board deleted');
-      });
+      this.boardService.deleteBoard(id).subscribe();
     }
   }
 }

@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
   registerUser() {
     this.authService.register(this.signupForm.value).subscribe((res: any) => {
-      console.log(res);
+      
 
       localStorage.setItem('token', res.token);
       localStorage.setItem('email', res.email);

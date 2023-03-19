@@ -33,7 +33,7 @@ export class AddBoardComponent implements OnInit {
       this.boardService
         .createBoard(this.boardForm.value)
         .subscribe((result) => {
-          console.log(result);
+         
           this.dialogRef.close();
         });
     }
@@ -41,7 +41,7 @@ export class AddBoardComponent implements OnInit {
       this.boardService
         .updateBoard(this.currentId, this.boardForm.value)
         .subscribe((result) => {
-          console.log(result);
+          
           this.dialogRef.close();
         });
     }

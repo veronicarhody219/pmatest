@@ -55,14 +55,14 @@ export class AddProjectComponent implements OnInit {
         this.projectService
           .saveProject(this.reactiveForm.value)
           .subscribe((result) => {
-            console.log(result);
+            
             this.dialogRef.close();
           });
       } else if (this.reactiveForm.valid && this.editMode) {
         this.projectService
           .editProject(this.currentId, this.reactiveForm.value)
           .subscribe((result) => {
-            console.log(result);
+            
             this.dialogRef.close();
           });
       }

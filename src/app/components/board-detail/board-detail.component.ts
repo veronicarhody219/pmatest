@@ -59,7 +59,6 @@ export class BoardDetailComponent implements OnInit {
     });
   }
   deleteProject(id: string) {
-    console.log(id);
     let askBeforeDeleting = confirm('Do you want to delete this project?');
     if (askBeforeDeleting) {
       this.projectService.DeleteProject(id).subscribe((result) => {
@@ -115,9 +114,7 @@ export class BoardDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(AddProjectComponent, {
       data: { id },
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe();
   }
   editProject(id: string) {
     this.openDialog(id);
